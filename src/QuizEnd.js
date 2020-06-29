@@ -1,6 +1,6 @@
-const { Component } = require("react")
+// const { Component } = require("react")
 
-import React, {Component} from React;
+import React, { Component } from 'react'
 
 class QuizEnd extends Component{
 
