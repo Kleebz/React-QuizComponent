@@ -3,6 +3,11 @@ import QuizQuestionButton from './QuizQuestionButton.js'
 
 class QuizQuestion extends Component{
     
+  constructor(props){
+    super(props);
+    this.state = {incorrectAnswer: false};
+}
+  
     render(){
       var index = 0;
 
@@ -10,6 +15,7 @@ class QuizQuestion extends Component{
         <section>
           <p>{this.props.quiz_question.instruction_text}</p>
         </section>
+        {this.state.incorrectAnswer ? <p className='error'>Sorry, that's not right</p> : null}
         <section className="buttons">
           <ul>
           {this.props.quiz_question.answer_options.map((answer_option, index) => {
@@ -21,7 +27,8 @@ class QuizQuestion extends Component{
     }
 
     handleClick(buttonText){
-      buttonText === this.props.quiz_question.answer ? this.props.showNextQuestionHandler() : console.log('still going');
+      buttonText === this.props.quiz_question.answer ? this.props.showNextQuestionHandler() : this.setState({ incorrectAnswer : true })
+      buttonText === this.props.quiz_question.answer ? this.setState({ incorrectAnswer : false }) : this.setState({ incorrectAnswer : true })//this.props.showNextQuestionHandler()
     }
 }
 
